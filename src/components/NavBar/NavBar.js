@@ -1,4 +1,8 @@
-import logo from './logo.svg'
+import './NavBar.scss';
+import logo from './logo.svg';
+import {CartWidget} from '../CartWidget/CartWidget';
+
+
 
 const NavBar = () => {
 
@@ -16,8 +20,10 @@ const NavBar = () => {
             <li><a href="./index.html"> Contacto</a> </li>
           </ul>
         </nav>
+        <CartWidget/>
       </header>
     );
 
 }
+
 export default NavBar;

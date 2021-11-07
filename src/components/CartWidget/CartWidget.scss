@@ -1,0 +1,11 @@
+.iconPos {
+    margin-top: 1.3rem;
+    margin-left: 1rem;
+    .cartIcon {
+        font-size: 30px;
+        color: white;
+        &:hover {
+            color: orange;
+        }
+    }
+}
