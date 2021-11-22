@@ -1,18 +1,37 @@
-import {Container,Row,Col} from 'react-bootstrap';
-import { ProductCard } from '../ProductCard/ProductCard';
-const ItemListContainer = ({Bienvenida}) =>{
-    return(
-        <Container className="my-5">
-            <Row>
-                <Col xl={12}>
-                    <h2>{Bienvenida}</h2>
-                    <hr/>
-                    <ProductCard stock="5"/>
-                </Col>
-            </Row>
-        </Container>
+import { useEffect, useState } from 'react';
+import { ItemList } from '../ItemList/ItemList';
+import {pedirDatos} from '../helpers/pedirDatos'
 
-        
+const ItemListContainer = () =>{
+
+    const [loading, setLoading] = useState(false)
+    const [productos, setProductos] = useState([])
+
+    useEffect(() => {
+        setLoading(true)
+        pedirDatos()
+            .then((resp)=>{
+                setProductos(resp)
+            })
+            .catch((error) =>{
+                console.log(error)
+            } )
+            .finally(() =>{
+                setLoading(false)
+            })
+
+    }, [])
+
+
+    return(
+
+        <>
+        {
+            loading
+            ? <h2>Cargando ...</h2>
+            :<ItemList productos={productos}/>
+        }
+        </>
     );
 
 }
